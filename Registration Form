@@ -1,0 +1,23 @@
+settings.py
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = '21uit019@kamarajengg.edu.in'
+EMAIL_HOST_PASSWORD = '1234@abc'
+
+views.py
+def send_email(request):
+    send_mail(
+        'Welcome Party - reg.',
+        'Greetings!!! Welcome to the Department of Information Technology.',
+        settings.EMAIL_HOST_USER,
+        ['skkavya0202@gmail.com'],
+        fail_silently=False,
+    )
+    return render(request, 'sendMail.html')
+
+urls.py
+urlpatterns = [
+    path('send_email/', views.send_email, name='send_email'),
+]
